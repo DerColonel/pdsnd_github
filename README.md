@@ -1,5 +1,5 @@
 ### Date created
-24.07.2020
+24.07.2020 by Peter Lichte
 
 ### Project Title
 Bikeshare
