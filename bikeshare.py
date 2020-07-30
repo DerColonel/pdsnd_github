@@ -36,7 +36,7 @@ def get_filters():
 
     # Get user input for day of week (all, monday, tuesday, ... sunday)
     while day not in ['All', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']:
-        day = input('Would you like to explore a certain weekday? Type \'all\' for all days\n').title()
+        day = input('Would you like to explore a certain weekday? Type e.g. \'Monday\' or \'all\' for all days\n').title()
         if day not in ['All', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']:
             print('\nInvalid entry! Please choose a valid weekday or type \'all\'.')
 
