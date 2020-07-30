@@ -20,8 +20,8 @@ def get_filters():
     city = ''
     month = ''
     day = ''
-    
-    print('Hello! Let\'s explore some US bikeshare data!')
+
+    print('Hello, my Friend! Let\'s explore some US bikeshare data!')
     # Get user input for city (chicago, new york city, washington)
     while city not in ['chicago', 'washington', 'new york city']:
         city = input('Which city would you like to explore? (Chicago, Washington or New York City)\n').lower()
@@ -47,7 +47,7 @@ def get_filters():
 def load_data(city, month, day):
     """
     Loads data for the specified city and filters by month and day if applicable.
-    
+
     Args:
         (str) city - name of the city to analyze
         (str) month - name of the month to filter by, or "all" to apply no month filter
@@ -57,25 +57,25 @@ def load_data(city, month, day):
     """
     filename = CITY_DATA[city]
     df = pd.read_csv(filename)
-        
+
     # Start Time column is converted to datetime
     df['Start Time'] = pd.to_datetime(df['Start Time'])
-        
+
     # Month and day of week from Start Time are extracted to create new columns
     df['month'] = df['Start Time'].dt.month
     df['day_of_week'] = df['Start Time'].dt.day_name()
-    
+
     # Monthly filter is applied
     if month != 'all':
         # use the index of the months list to get the corresponding int
         months = ['january', 'february', 'march', 'april', 'may', 'june']
-        month = months.index(month) + 1 
-        df = df[(df['month']) == month] 
-    
+        month = months.index(month) + 1
+        df = df[(df['month']) == month]
+
     # Daily filter is applied
     if day != 'All': # Capital A important as input -> .title()
         df = df[df['day_of_week'] == day]
-        
+
     return df
 
 
@@ -103,8 +103,8 @@ def time_stats(df):
 
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
-    
-    
+
+
 def station_stats(df):
     """Displays statistics on the most popular stations and trip."""
 
@@ -127,7 +127,7 @@ def station_stats(df):
 
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
-    
+
 
 def trip_duration_stats(df):
     """Displays statistics on the total and average trip duration."""
@@ -140,7 +140,7 @@ def trip_duration_stats(df):
     m, s = divmod(total_duration, 60)
     h, m = divmod(m, 60)
     print('The total trip duration is {:d} hours, {:02d} minutes and {:02d} seconds.'.format(h, m, s))
-    
+
     # The mean travel time is calculated
     mean_duration = int(df['Trip Duration'].mean())
     m, s = divmod(mean_duration, 60)
@@ -149,7 +149,7 @@ def trip_duration_stats(df):
 
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
-    
+
 
 def user_type_stats(df):
     """Displays statistics on bikeshare users."""
@@ -163,12 +163,12 @@ def user_type_stats(df):
 
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
-    
+
 
 def user_gender_year_stats(df):
 
     start_time = time.time()
-    
+
     # Male/Female counter seperately as Washington has no gender and birth data
     gender = df['Gender'].value_counts()
     print ('\nThe split between females and males is:\n\n' + gender.to_string(header=None, index=1))
@@ -176,10 +176,10 @@ def user_gender_year_stats(df):
     # Earliest, most recent, and most common year of birth are identified
     min_year = int(np.nanmin(df['Birth Year'])) # nanmin to exclude NaN
     print('\nThe earliest year of birth is {}'.format(min_year))
-    
+
     min_year = int(np.nanmax(df['Birth Year'])) # nanmin to exclude NaN
     print('\nThe most recent year of birth is {}'.format(min_year))
-    
+
     common_year = int(df['Birth Year'].mode())
     print('\nThe most common year of birth is {}'.format(common_year))
 
