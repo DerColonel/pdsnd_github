@@ -30,7 +30,7 @@ def get_filters():
 
     # Get user input for month (all, january, february, ... , june)
     while month not in ['all', 'january', 'february', 'march', 'april', 'may', 'june']:
-        month = input('Would you like to explore a certain month from Jan-Jun? Type \'all\' for all months\n').lower()
+        month = input('Would you like to explore a certain month from January-June? Type \'all\' for all months\n').lower()
         if month not in ['all', 'january', 'february', 'march', 'april', 'may', 'june']:
             print('\nInvalid entry! Please choose a month between January and June or type \'all\'.')
 
